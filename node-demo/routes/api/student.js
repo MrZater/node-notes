@@ -16,7 +16,7 @@ studentRouter.get(
     const sex = req.query.sex || -1;
     const name = req.query.name || "";
     const result = await stuServe.getStudents(page, limit, sex, name);
-    return result;
+     res.send(result)
   })
 );
 

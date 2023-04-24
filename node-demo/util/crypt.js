@@ -5,9 +5,10 @@ const sercet = Buffer.from("kaft5zo9oa1wyp2k");
 const crypto = require("crypto");
 
 // 准备一个iv，随机向量，128位
-const iv = Buffer.from(
-  Math.random().toString(36).slice(-8) + Math.random().toString(36).slice(-8)
-);
+// const iv = Buffer.from(
+//   Math.random().toString(36).slice(-8) + Math.random().toString(36).slice(-8)
+// );
+const iv = Buffer.from('kaft5zo9dg1wyp2k');
 
 // 加密一个字符串
 exports.encrypt = function (str) {

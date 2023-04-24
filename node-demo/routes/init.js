@@ -11,7 +11,10 @@ const port = 5008; // 监听端口
  * 如果不存在该文件，则移交给下面的中间件
  * 默认情况下，如果映射结果是一个目录，则会自动使用index.html文件
  */
-app.use("/static/", express.static(staticRoot));
+app.use( express.static(staticRoot));
+// 跨域中间件
+app.use(require('./corsMiddlewave'))
+
 
 // 加入cookie-parser
 // 加入之后会在req对象中注入cookies属性，用于获取所有请求传递过来的cookie  req.cookies
@@ -19,6 +22,7 @@ app.use("/static/", express.static(staticRoot));
 const cookieParser = require('cookie-parser')
 // 可传参：秘钥，string
 app.use(cookieParser())
+
 
 // 应用token中间件
 app.use(require('./tokenMiddleware'))

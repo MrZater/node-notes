@@ -22,8 +22,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon -x npm run server",
-    "server": "node index"
+    "start": "nodemon -x npm run server node",
+    "server": "node --inspect index"
   },
   "author": "",
   "license": "ISC"

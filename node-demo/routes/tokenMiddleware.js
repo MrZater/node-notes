@@ -5,9 +5,9 @@ const { pathToRegexp } = require("path-to-regexp");
 const cryptor = require("../util/crypt");
 // 需要token认证的方法数组
 const needTokenApi = [
-  { path: "/api/student", method: "POST" },
-  { path: "/api/student", method: "GET" },
-  { path: "/api/student/:id", method: "PUT" },
+  // { path: "/api/student", method: "POST" },
+  // { path: "/api/student", method: "GET" },
+  // { path: "/api/student/:id", method: "PUT" },
 ];
 
 module.exports = (req, res, next) => {
