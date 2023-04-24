@@ -1,0 +1,12 @@
+sql [2023-04-23 14:40:35] DEBUG: Executing (default): INSERT INTO `students` (`id`,`name`,`birthday`,`sex`,`mobile`,`classId`) VALUES (DEFAULT,?,?,?,?,?);
+
+sql [2023-04-23 14:40:40] DEBUG: Executing (default): SELECT `id`, `name`, `openDate`, `deletedAt` FROM `classes` AS `class` WHERE (`class`.`deletedAt` IS NULL AND `class`.`id` = '12');
+
+sql [2023-04-23 14:40:40] DEBUG: Executing (default): INSERT INTO `students` (`id`,`name`,`birthday`,`sex`,`mobile`,`classId`) VALUES (DEFAULT,?,?,?,?,?);
+
+sql [2023-04-23 14:40:47] DEBUG: Executing (default): SELECT `id`, `name`, `openDate`, `deletedAt` FROM `classes` AS `class` WHERE (`class`.`deletedAt` IS NULL AND `class`.`id` = '12');
+
+sql [2023-04-23 14:40:47] DEBUG: Executing (default): INSERT INTO `students` (`id`,`name`,`birthday`,`sex`,`mobile`,`classId`) VALUES (DEFAULT,?,?,?,?,?);
+
+sql [2023-04-23 14:41:00] DEBUG: Executing (default): SELECT count(`student`.`id`) AS `count` FROM `students` AS `student` LEFT OUTER JOIN `classes` AS `class` ON `student`.`classId` = `class`.`id` AND (`class`.`deletedAt` IS NULL) WHERE `student`.`deletedAt` IS NULL;
+

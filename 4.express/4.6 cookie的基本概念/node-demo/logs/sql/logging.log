@@ -1,0 +1,2 @@
+sql [2023-04-23 14:41:00] DEBUG: Executing (default): SELECT `student`.`id`, `student`.`name`, `student`.`sex`, `student`.`birthday`, `class`.`id` AS `class.id`, `class`.`name` AS `class.name`, `class`.`openDate` AS `class.openDate`, `class`.`deletedAt` AS `class.deletedAt` FROM `students` AS `student` LEFT OUTER JOIN `classes` AS `class` ON `student`.`classId` = `class`.`id` AND (`class`.`deletedAt` IS NULL) WHERE `student`.`deletedAt` IS NULL LIMIT 0, 10;
+

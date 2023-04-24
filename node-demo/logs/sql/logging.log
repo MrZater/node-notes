@@ -1,0 +1,2 @@
+sql [2023-04-24 15:14:01] DEBUG: Executing (default): ALTER TABLE `books` CHANGE `name` `name` VARCHAR(255) NOT NULL;
+

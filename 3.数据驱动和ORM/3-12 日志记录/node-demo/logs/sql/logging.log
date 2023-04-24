@@ -1,0 +1,12 @@
+sql [2023-03-17 12:21:43] DEBUG: Executing (default): ALTER TABLE `books` CHANGE `name` `name` VARCHAR(255) NOT NULL;
+
+sql [2023-03-17 12:21:43] DEBUG: Executing (default): ALTER TABLE `books` CHANGE `imgurl` `imgurl` VARCHAR(255) NOT NULL;
+
+sql [2023-03-17 12:21:43] DEBUG: Executing (default): ALTER TABLE `books` CHANGE `publishDate` `publishDate` VARCHAR(255) NOT NULL;
+
+sql [2023-03-17 12:21:43] DEBUG: Executing (default): ALTER TABLE `books` CHANGE `author` `author` VARCHAR(255) NOT NULL;
+
+sql [2023-03-17 12:21:43] DEBUG: Executing (default): ALTER TABLE `books` CHANGE `deletedAt` `deletedAt` DATETIME;
+
+sql [2023-03-17 12:21:43] DEBUG: Executing (default): SHOW INDEX FROM `books`
+

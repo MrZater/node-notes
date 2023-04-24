@@ -1,0 +1,82 @@
+// 抓取的数据信息
+const axios = require('axios').default
+const Mock = require('mockjs')
+const Book = require('../models/Book')
+const cheerio = require('cheerio')
+// 获取网页的源代码
+async function getBooksHTML() {
+    try {
+        const resp = await axios.get('https://noveless.com/alltext/sci-fi')
+        // 得到响应数据中的html片段
+        return resp.data
+
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+/**
+ * 得到一个完整的网页，并从网页中分析出书籍的基本信息，然后得到书籍的详情页链接数组
+ */
+async function getBookLinks() {
+    // 得到网页html片段
+    const html = await getBooksHTML()
+    // 将片段转换成jquery对象
+    const $ = cheerio.load(html)
+    // 得到存有每个书籍详情页地址的a标签
+    const achorElements = $('.content-wrap .content .excerpt.excerpt-one header a')
+    return achorElements.map((i, item) => {
+        // 得到详情页地址并返回
+        const href = item.attribs['href']
+        return href
+    }).get()
+}
+
+/**
+ * 根据详情页地址得到书籍的详情信息
+ * @param {*} detailUrl 
+ */
+async function getBookDetail(detailUrl) {
+    // 通过详情页链接得到详情页的响应数据
+    const resp = await axios.get(detailUrl)
+    // 在相应数据中得到html片段
+    const $ = cheerio.load(resp.data)
+    // 在片段中获取书籍信息
+    const name = $('.article-title a').text().trim()
+    const imgurl = $('.article-content img').attr('src')
+    const author = Mock.mock('@cname')
+    const publishDate = Mock.mock('@date')
+    return {
+        name,
+        imgurl,
+        author,
+        publishDate
+    }
+};
+
+/**
+ * 通过获取到每个书籍的详情链接，再使用getBookDetail获取到每本书的详情信息，当所有数据都完成时返回该详情数组
+ * @returns 
+ */
+async function fetchAll() {
+    // 获取详情页链接
+    const urlList = await getBookLinks()
+    const proms = urlList.map(async (item, i) => {
+        // 通过该详情页链接获得详情信息
+        return await getBookDetail(item)
+    })
+    // 当所有的promise完成后返回
+    return Promise.all(proms)
+}
+
+/**
+ * 通过fetchAll获取到书籍详情列表 并 保存到数据库
+ */
+async function saveToDB() {
+    // 得到书籍信息列表
+    const books = await fetchAll()
+    // 批量加入到数据库
+    await Book.bulkCreate(books)
+    console.log('抓取并保存成功！')
+}
+saveToDB()

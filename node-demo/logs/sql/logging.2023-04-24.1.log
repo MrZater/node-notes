@@ -1,0 +1,14 @@
+sql [2023-04-24 15:14:01] DEBUG: Executing (default): ALTER TABLE `admins` CHANGE `loginId` `loginId` VARCHAR(255) NOT NULL;
+
+sql [2023-04-24 15:14:01] DEBUG: Executing (default): ALTER TABLE `admins` CHANGE `loginPwd` `loginPwd` VARCHAR(255) NOT NULL;
+
+sql [2023-04-24 15:14:01] DEBUG: Executing (default): ALTER TABLE `admins` CHANGE `deletedAt` `deletedAt` DATETIME;
+
+sql [2023-04-24 15:14:01] DEBUG: Executing (default): SHOW INDEX FROM `admins`
+
+sql [2023-04-24 15:14:01] DEBUG: Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'books' AND TABLE_SCHEMA = 'myschooldb'
+
+sql [2023-04-24 15:14:01] DEBUG: Executing (default): SHOW FULL COLUMNS FROM `books`;
+
+sql [2023-04-24 15:14:01] DEBUG: Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'books' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='myschooldb' AND REFERENCED_TABLE_NAME IS NOT NULL;
+
